@@ -1,0 +1,9 @@
+li a {
+    color: green;
+}
+body {
+    background-image: url('images/background.jpeg'); 
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
