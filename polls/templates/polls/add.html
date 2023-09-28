@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <title>Add Question</title>
+    <link rel="stylesheet" href="{% static 'polls/style.css' %}">
+    <!-- <title>Add Question</title> -->
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -27,22 +28,33 @@
       </nav>
     <div class="container">
         <h2>Add Question</h2>
-        <div class="text-right">
-            <img src="{% static 'image/cartoon.jpeg' %}" alt="Image">
-        </div>
-        <form method="post">
-            {% csrf_token %}
-            {{ question_form.as_p }}
-            <h2>Add Choices</h2>
-            {{ choice_formset.management_form }}
-            {% for choice_form in choice_formset %}
-                {{ choice_form.as_p }}
-            {% endfor %}
-            <button type="submit" class="btn btn-outline-success" value="Submit">Submit</button>
-        </form>
-        <a href="{% url 'polls:index' %}">Back to Index</a>
-    </div>
-    <!-- Include Bootstrap JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+        <form method="post" enctype= multipart/form-data>
+          {% csrf_token %}
+          <div class="form-group">
+              <label for="{{ question_form.question_text.id_for_label }}">Question Text:</label>
+              {{ question_form.question_text }}
+          </div>
+          <h2>Add Choices</h2>
+          {{ choice_formset.management_form }}
+          {% for choice_form in choice_formset %}
+              <div class="form-group">
+                  <label for="{{ choice_form.choice_text.id_for_label }}">Choice Text:</label>
+                  {{ choice_form.choice_text }}
+              </div>
+          {% endfor %}
+          <button type="submit" class="btn btn-outline-success" value="Submit">Submit</button>
+      </form>
+      
+      <!-- JavaScript for formset management -->
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.formset/1.2.2/jquery.formset.js"></script>
+      <script>
+          $(function() {
+              $(".inline.{{ choice_formset.prefix }}").formset({
+                  prefix: "{{ choice_formset.prefix }}"
+              });
+          });
+      </script>
+      
 </body>
 </html>
