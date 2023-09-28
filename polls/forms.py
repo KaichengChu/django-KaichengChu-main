@@ -10,10 +10,3 @@ class ChoiceForm(forms.ModelForm):
     class Meta:
         model = Choice
         fields = ['choice_text']
-
-ChoiceFormSet = forms.inlineformset_factory(
-    Question,
-    Choice,
-    form=ChoiceForm,
-    extra=3
-)
