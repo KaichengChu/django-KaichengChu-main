@@ -19,6 +19,13 @@
       .navbar {
         background-color: #007bff;
       }
+      .add-question-btn {
+      display: flex;
+      justify-content: center;
+      color: brown;
+      background-color: bisque;
+      margin-top: auto; 
+    }
   
       .navbar-brand {
         color: #fff;
@@ -31,13 +38,6 @@
   
       .nav-link {
         color: #fff;
-      }
-  
-      .welcome-message {
-        text-align: center;
-        font-family: 'Lato', sans-serif;
-        color: #333;
-        padding-top: 50px;
       }
   
       .add-question-btn {
@@ -76,9 +76,6 @@
     </div>
   </nav>
 
-
-
-
     <h1>Add Question and Choices</h1>
     <form method="post">
         {% csrf_token %}
@@ -95,7 +92,7 @@
             {{ choice_form.choice_text.errors }}
         {% endfor %}
         
-        <input type="submit" value="Add Question">
+        <input type="submit" value="Add Question" class="add-question-btn">
     </form>
     <footer class="footer">
       <div class="container">

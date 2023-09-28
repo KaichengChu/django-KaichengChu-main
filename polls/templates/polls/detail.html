@@ -1,3 +1,4 @@
+{%load static%}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,22 +7,74 @@
   <title>Django Practice</title>
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'polls/style.css' %}">
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      margin: 0;
+      background-color: #f8f9fa;
+    }
+
+    .navbar {
+      background-color: #007bff;
+    }
+    .add-question-btn {
+    display: flex;
+    justify-content: center;
+    color: brown;
+    background-color: bisque;
+    margin-top: auto; 
+  }
+
+    .navbar-brand {
+      color: #fff;
+      font-weight: bold;
+    }
+
+    .navbar-toggler-icon {
+      background-color: #fff;
+    }
+
+    .nav-link {
+      color: #fff;
+    }
+
+    .add-question-btn {
+      display: flex;
+      justify-content: center;
+      margin-top: auto; /* Push the button to the bottom */
+    }
+
+    .footer {
+      background-color: #343a40;
+      color: #fff;
+      padding: 20px 0;
+      text-align: center;
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+    }
+  </style>
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="{% url 'polls:index' %}">Home</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        {% for question in latest_question_list %}
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a>
-        </li>
-        {% endfor %}
-      </ul>
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container">
+      <a class="navbar-brand" href="{% url 'polls:index' %}">Home</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          {% for question in latest_question_list %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
     </div>
   </nav>
 
@@ -47,5 +100,10 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2023 Kaicheng Chu. All rights reserved.</p>
+    </div>
+  </footer>
 </body>
 </html>
