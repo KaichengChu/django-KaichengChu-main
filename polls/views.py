@@ -70,35 +70,6 @@ class ResultsView(generic.DetailView):
     model = Question
     template_name = "polls/results.html"
 
-# def add_question(request):
-#     # Using formset_factory to create the choice formset
-#     ChoiceFormSet = formset_factory(ChoiceForm, extra=3, can_delete=True)
-
-#     if request.method == 'POST':
-#         question_form = QuestionForm(request.POST)
-#         choice_formset = ChoiceFormSet(request.POST, prefix='choice')
-
-#         if question_form.is_valid() and choice_formset.is_valid():
-#             # Save the question and choices within a transaction
-#             with transaction.atomic():
-#                 question = question_form.save(commit=False)
-#                 question.pub_date = timezone.now()
-#                 question.save()
-
-#                 for choice_form in choice_formset:
-#                     choice = choice_form.save(commit=False)
-#                     choice.question = question
-#                     choice.save()
-
-#             return redirect('polls:index')
-#     else:
-#         question_form = QuestionForm()
-#         choice_formset = ChoiceFormSet(prefix='choice')
-
-#     return render(request, 'polls/add.html', {
-#         'question_form': question_form,
-#         'choice_formset': choice_formset,
-#     })
 
 def add_question(request):
     if request.method == 'POST':
